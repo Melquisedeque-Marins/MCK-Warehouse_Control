@@ -9,12 +9,12 @@ package VIEW.requests;
  *
  * @author Rafael
  */
-public class ReqestForm extends javax.swing.JInternalFrame {
+public class RequestForm extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form ReqestForm
      */
-    public ReqestForm() {
+    public RequestForm() {
         initComponents();
     }
 

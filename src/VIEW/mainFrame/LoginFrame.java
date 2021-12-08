@@ -1,45 +1,53 @@
-package VIEW;
+package VIEW.mainFrame;
 
+import Atxy2k.CustomTextField.RestrictedTextField;
 import CONTROLER.UserControler;
 import MODEL.UserModel;
-import VIEW.utilView.FieldFormat;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 public class LoginFrame extends javax.swing.JFrame {
-    
+
     public LoginFrame() {
         initComponents();
-        txtUser.setDocument(new FieldFormat(20, FieldFormat.TypeEntrance.USER));
-        txtPassword.setDocument(new FieldFormat(8, FieldFormat.TypeEntrance.PASSWORD));
+        
+        RestrictedTextField validarUser = new RestrictedTextField(txtUser);
+        validarUser.setOnlyAlphaNumeric(true);
+        validarUser.setLimit(20);
+        
+        RestrictedTextField validarPass = new RestrictedTextField(txtPassword);
+        validarPass.setOnlyAlphaNumeric(true);
+        validarPass.setLimit(8);
+
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblUser = new javax.swing.JLabel();
+        lblPassword = new javax.swing.JLabel();
         txtUser = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
         btnLogin = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        lblLogo = new javax.swing.JLabel();
+        lblCharacteres = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MCK WAREHOUSE CONTROL - LOGIN");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VIEW/utilView/Icones/USER 24.png"))); // NOI18N
-        jLabel1.setText("  User");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 80, 30));
+        lblUser.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        lblUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VIEW/utilView/Icones/USER 24.png"))); // NOI18N
+        lblUser.setText("  User");
+        getContentPane().add(lblUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 80, 30));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VIEW/utilView/Icones/PASSWORD PRETO 24.png"))); // NOI18N
-        jLabel2.setText("  Password");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 110, 30));
+        lblPassword.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        lblPassword.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VIEW/utilView/Icones/PASSWORD PRETO 24.png"))); // NOI18N
+        lblPassword.setText("  Password");
+        getContentPane().add(lblPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 110, 30));
 
         txtUser.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -62,13 +70,17 @@ public class LoginFrame extends javax.swing.JFrame {
                 btnLoginActionPerformed(evt);
             }
         });
-        getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 80, 30));
+        getContentPane().add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 80, 30));
 
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 153));
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VIEW/utilView/Icones/USERS LOGIN 48.png"))); // NOI18N
-        jLabel4.setText(" USER LOGIN");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 260, 60));
+        lblLogo.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lblLogo.setForeground(new java.awt.Color(0, 0, 153));
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VIEW/utilView/Icones/USERS LOGIN 48.png"))); // NOI18N
+        lblLogo.setText(" USER LOGIN");
+        getContentPane().add(lblLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 260, 60));
+
+        lblCharacteres.setForeground(new java.awt.Color(51, 51, 51));
+        lblCharacteres.setText("* 8 characters");
+        getContentPane().add(lblCharacteres, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/VIEW/utilView/Icones/BACKGROUND LOGIN.jpg"))); // NOI18N
         jLabel3.setText("jLabel3");
@@ -123,10 +135,11 @@ public class LoginFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel lblCharacteres;
+    private javax.swing.JLabel lblLogo;
+    private javax.swing.JLabel lblPassword;
+    private javax.swing.JLabel lblUser;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
@@ -134,7 +147,7 @@ public class LoginFrame extends javax.swing.JFrame {
     private void LoginUser() {
         String username = txtUser.getText();
         String password = String.valueOf(txtPassword.getPassword());
-
+       
         if (username.isEmpty() || password.isEmpty()) {
 
             JOptionPane.showMessageDialog(null, "ALL FIELDS MUST BE FILLED IN");
@@ -157,14 +170,14 @@ public class LoginFrame extends javax.swing.JFrame {
                         MainFrame mainframe = new MainFrame();
                         mainframe.setVisible(true);
                         MainFrame.MenManeger.setEnabled(true);
-                        MainFrame.lblUsuario.setText(rs.getString(2));
-                        
+                        MainFrame.lblUserName.setText(rs.getString(2));
+
                         dispose();
                     } else {
 
                         MainFrame mainframe = new MainFrame();
                         mainframe.setVisible(true);
-                        MainFrame.lblUsuario.setText(rs.getString(2));
+                        MainFrame.lblUserName.setText(rs.getString(2));
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "INVALID USER NAME OU PASSWORD");

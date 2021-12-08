@@ -5,9 +5,10 @@
  */
 package VIEW.productViews;
 
+import Atxy2k.CustomTextField.RestrictedTextField;
 import CONTROLER.ProductControler;
 import MODEL.ProductModel;
-import VIEW.MainFrame;
+import VIEW.mainFrame.MainFrame;
 import static java.awt.SystemColor.desktop;
 import java.sql.SQLException;
 import java.util.Locale;
@@ -26,6 +27,10 @@ public class SearchProducts extends javax.swing.JInternalFrame {
      */
     public SearchProducts() {
         initComponents();
+        
+         RestrictedTextField validarUser = new RestrictedTextField(txtProductSearch);
+        validarUser.setOnlyAlphaNumeric(true);
+        validarUser.setLimit(20);
     }
 
     /**
@@ -56,6 +61,8 @@ public class SearchProducts extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         txtId = new javax.swing.JTextField();
         btnEdit = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        txtUnity = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -91,6 +98,10 @@ public class SearchProducts extends javax.swing.JInternalFrame {
 
         tblSearch.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
@@ -136,6 +147,8 @@ public class SearchProducts extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel9.setText("Unity:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -153,7 +166,7 @@ public class SearchProducts extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -163,14 +176,6 @@ public class SearchProducts extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 586, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtBarcode, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtManufactor, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -178,10 +183,22 @@ public class SearchProducts extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 857, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(345, 345, 345)
-                        .addComponent(btnEdit)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 857, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(302, 302, 302)
+                                .addComponent(btnEdit))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel9))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtBarcode, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtUnity, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(184, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -192,8 +209,8 @@ public class SearchProducts extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1)
                     .addComponent(txtProductSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -217,13 +234,17 @@ public class SearchProducts extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(txtBarcode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(txtUnity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addComponent(btnEdit)
-                .addContainerGap(217, Short.MAX_VALUE))
+                .addGap(97, 97, 97))
         );
 
         pack();
@@ -270,6 +291,7 @@ public class SearchProducts extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblSearch;
     private javax.swing.JTextField txtAmount;
@@ -280,6 +302,7 @@ public class SearchProducts extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtProductSearch;
     private javax.swing.JTextField txtType;
+    private javax.swing.JTextField txtUnity;
     // End of variables declaration//GEN-END:variables
 
     public void search() {
@@ -299,6 +322,7 @@ public class SearchProducts extends javax.swing.JInternalFrame {
             txtType.setEditable(false);
             txtManufactor.setEditable(false);
             txtBarcode.setEditable(false);
+            txtUnity.setEditable(false);
             txtAmount.setEditable(false);
 
         } catch (SQLException ex) {
@@ -314,7 +338,8 @@ public class SearchProducts extends javax.swing.JInternalFrame {
         txtType.setText(tblSearch.getModel().getValueAt(set, 3).toString());
         txtManufactor.setText(tblSearch.getModel().getValueAt(set, 4).toString());
         txtBarcode.setText(tblSearch.getModel().getValueAt(set, 5).toString());
-        txtAmount.setText(tblSearch.getModel().getValueAt(set, 6).toString());
+        txtUnity.setText(tblSearch.getModel().getValueAt(set, 6).toString());
+        txtAmount.setText(tblSearch.getModel().getValueAt(set, 7).toString());
 
     }
 }

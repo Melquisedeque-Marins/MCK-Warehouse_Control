@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 
-public class UserControler implements CrudMethods {
+public class UserControler {
 
     Connection connection;
     PreparedStatement pstm;
@@ -23,16 +23,11 @@ public class UserControler implements CrudMethods {
     public UserControler() {
 
     }
-
-    @Override
-    public void create() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+  
     public void create(UserModel usermodel) {
 
         connection = new ConnectionBD().ConnectBD();
-        String sql = "INSERT INTO teste (name, user, password, aut_password, perfil) VALUES (?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO users (name, user, password, aut_password, perfil) VALUES (?, ?, ?, ?, ?);";
 
         try {
             pstm = connection.prepareStatement(sql);
@@ -46,15 +41,14 @@ public class UserControler implements CrudMethods {
             JOptionPane.showMessageDialog(null, "successfully registered user");
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "ALGO DEU ERRADO");
+            JOptionPane.showMessageDialog(null, "This username is not available");
         }
     }
 
-    @Override
     public ArrayList<UserModel> read() {
 
         this.connection = new ConnectionBD().ConnectBD();
-        String sql = ("SELECT * FROM teste ORDER BY name");
+        String sql = ("SELECT * FROM users ORDER BY name");
 
         try {
             pstm = connection.prepareStatement(sql);
@@ -63,7 +57,7 @@ public class UserControler implements CrudMethods {
             while (rs.next()) {
 
                 UserModel usermodel = new UserModel();
-                usermodel.setId(rs.getInt("id"));
+                usermodel.setId(rs.getInt("idusers"));
                 usermodel.setName(rs.getString("name"));
                 usermodel.setUser(rs.getString("user"));
                 usermodel.setPassword(rs.getString("password"));
@@ -78,13 +72,12 @@ public class UserControler implements CrudMethods {
 
         }
         return list;
-
     }
 
     public void search(UserModel usermodel) throws SQLException {
 
         this.connection = new ConnectionBD().ConnectBD();
-        String sql = ("SELECT * FROM teste where  name like ? ORDER BY name");
+        String sql = ("SELECT * FROM users where  name like ? ORDER BY name");
 
         try {
             pstm = connection.prepareStatement(sql);
@@ -94,13 +87,11 @@ public class UserControler implements CrudMethods {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "search Controler" + e);
         }
-
     }
-
  
     public void update(UserModel usermodel) {
         connection = new ConnectionBD().ConnectBD();
-        String sql = "UPDATE teste SET name = ?, user=?, password=? , aut_password=?, perfil=? WHERE id=?;";
+        String sql = "UPDATE users SET name = ?, user=?, password=? , aut_password=?, perfil=? WHERE idusers=?;";
 
         try {
             pstm = connection.prepareStatement(sql);
@@ -117,13 +108,12 @@ public class UserControler implements CrudMethods {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "ALGO DEU ERRADO" + e);
         }
-
     }
 
     public void delete(UserModel usermodel) {
 
         connection = new ConnectionBD().ConnectBD();
-        String sql = "DELETE FROM teste WHERE id = ?;";
+        String sql = "DELETE FROM users WHERE idusers = ?;";
 
         try {
             pstm = connection.prepareStatement(sql);
@@ -140,7 +130,7 @@ public class UserControler implements CrudMethods {
     public ResultSet autenticationUser(UserModel user) {
         this.connection = new ConnectionBD().ConnectBD();
 
-        String sql = ("SELECT * FROM teste WHERE user = ? AND password = ? ");
+        String sql = ("SELECT * FROM users WHERE user = ? AND password = ? ");
 
         try {
             PreparedStatement pstm = connection.prepareStatement(sql);
@@ -156,11 +146,10 @@ public class UserControler implements CrudMethods {
         }
     }
 
-    
     public ResultSet autorizationUser(UserModel user) {
         this.connection = new ConnectionBD().ConnectBD();
 
-        String sql = ("SELECT * FROM teste WHERE user = ? AND aut_password = ? ");
+        String sql = ("SELECT * FROM users WHERE user = ? AND aut_password = ? ");
 
         try {
             PreparedStatement pstm = connection.prepareStatement(sql);
@@ -174,20 +163,4 @@ public class UserControler implements CrudMethods {
             return null;
         }
     }
-    
-    
-    
-    
-    
-    
-    @Override
-    public void delete() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void update() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 }

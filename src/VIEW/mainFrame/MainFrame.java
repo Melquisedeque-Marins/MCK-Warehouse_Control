@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package VIEW;
+package VIEW.mainFrame;
 
 import VIEW.productViews.DeleteUpdateProducts;
 import VIEW.userViews.DeleteUpdateUser;
@@ -11,10 +11,8 @@ import VIEW.userViews.InsertUser;
 import VIEW.userViews.SearchUser;
 import VIEW.productViews.InsertProducts;
 import VIEW.productViews.SearchProducts;
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import VIEW.requests.RequestForm;
 import javax.swing.JOptionPane;
-
 /**
  *
  * @author Rafael
@@ -43,8 +41,8 @@ public class MainFrame extends javax.swing.JFrame {
         jMenuItem12 = new javax.swing.JMenuItem();
         jPopupMenu1 = new javax.swing.JPopupMenu();
         desktop = new javax.swing.JDesktopPane();
-        jLabel1 = new javax.swing.JLabel();
-        lblUsuario = new javax.swing.JLabel();
+        lblUser = new javax.swing.JLabel();
+        lblUserName = new javax.swing.JLabel();
         Menubar = new javax.swing.JMenuBar();
         MenMat = new javax.swing.JMenu();
         MenProdSearch = new javax.swing.JMenuItem();
@@ -84,10 +82,10 @@ public class MainFrame extends javax.swing.JFrame {
         );
         desktopLayout.setVerticalGroup(
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 720, Short.MAX_VALUE)
         );
 
-        jLabel1.setText("Usuario: ");
+        lblUser.setText("Usuario: ");
 
         MenMat.setText("Products");
         MenMat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -125,6 +123,11 @@ public class MainFrame extends javax.swing.JFrame {
         jMenu2.setText("Requisições ");
 
         jMenuItem1.setText("Gerar");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem1);
 
         jMenuItem2.setText("Consultar");
@@ -217,9 +220,9 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(desktop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
+                .addComponent(lblUser)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblUserName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -228,9 +231,9 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(0, 695, Short.MAX_VALUE))
+                    .addComponent(lblUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblUser))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -263,6 +266,7 @@ public class MainFrame extends javax.swing.JFrame {
         DeleteUpdateUser deleteuser = new DeleteUpdateUser();
         deleteuser.setVisible(true);
         desktop.add(deleteuser);
+        
     }//GEN-LAST:event_MenOpcUpdActionPerformed
 
     private void MenInsertUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenInsertUserActionPerformed
@@ -270,15 +274,12 @@ public class MainFrame extends javax.swing.JFrame {
         createuser.setVisible(true);
         desktop.add(createuser);
 
-
     }//GEN-LAST:event_MenInsertUserActionPerformed
 
     private void menLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menLogoutActionPerformed
-
         LoginFrame loginframe = new LoginFrame();
         loginframe.setVisible(true);
         dispose();
-
 
     }//GEN-LAST:event_menLogoutActionPerformed
 
@@ -287,12 +288,9 @@ public class MainFrame extends javax.swing.JFrame {
         if (sair == JOptionPane.YES_OPTION) {
             System.exit(0);
         }
-
-
     }//GEN-LAST:event_menSairActionPerformed
 
     private void MenProdSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenProdSearchActionPerformed
-
         SearchProducts searchproducts = new SearchProducts();
         searchproducts.setVisible(true);
         desktop.add(searchproducts);
@@ -300,12 +298,18 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_MenProdSearchActionPerformed
 
     private void MenProdUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenProdUpdateActionPerformed
-
         DeleteUpdateProducts deleteprod = new DeleteUpdateProducts();
         deleteprod.setVisible(true);
         desktop.add(deleteprod);
 
     }//GEN-LAST:event_MenProdUpdateActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        RequestForm requestForm = new RequestForm();
+        requestForm.setVisible(true);
+        desktop.add(requestForm);
+
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -361,7 +365,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem MenSearchUser;
     private javax.swing.JMenuBar Menubar;
     private javax.swing.JDesktopPane desktop;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuItem jMenuItem1;
@@ -373,7 +376,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPopupMenu jPopupMenu1;
-    public static javax.swing.JLabel lblUsuario;
+    private javax.swing.JLabel lblUser;
+    public static javax.swing.JLabel lblUserName;
     private javax.swing.JMenuItem menLogout;
     private javax.swing.JMenu menOpções;
     private javax.swing.JMenuItem menSair;

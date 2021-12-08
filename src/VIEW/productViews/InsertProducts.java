@@ -5,6 +5,7 @@
  */
 package VIEW.productViews;
 
+import Atxy2k.CustomTextField.RestrictedTextField;
 import CONTROLER.ProductControler;
 import MODEL.ProductModel;
 import javax.swing.JOptionPane;
@@ -20,6 +21,28 @@ public class InsertProducts extends javax.swing.JInternalFrame {
      */
     public InsertProducts() {
         initComponents();
+
+        RestrictedTextField validarCode = new RestrictedTextField(txtCode);
+        validarCode.setOnlyAlphaNumeric(true);
+        validarCode.setLimit(7);
+
+        RestrictedTextField validarName = new RestrictedTextField(txtName);
+        //validarName.setOnlyAlphaNumeric(true);
+        validarName.setAcceptSpace(true);
+        validarName.setLimit(50);
+
+        RestrictedTextField validarManuf = new RestrictedTextField(txtManufactor);
+        validarManuf.setOnlyAlphaNumeric(true);
+        validarManuf.setAcceptSpace(true);
+        validarManuf.setLimit(30);
+
+        RestrictedTextField validarBarcode = new RestrictedTextField(txtBarcode);
+        validarBarcode.setOnlyNums(true);
+        validarBarcode.setLimit(13);
+        
+        RestrictedTextField validarAmount = new RestrictedTextField(txtAmount);
+        validarAmount.setOnlyNums(true);
+        validarAmount.setLimit(12);
     }
 
     /**
@@ -31,7 +54,6 @@ public class InsertProducts extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -42,19 +64,19 @@ public class InsertProducts extends javax.swing.JInternalFrame {
         txtManufactor = new javax.swing.JTextField();
         txtBarcode = new javax.swing.JTextField();
         txtAmount = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         btnInsert = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        txtType = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        cmbUnity = new javax.swing.JComboBox<>();
+        cmbType = new javax.swing.JComboBox<>();
+        btnClearFields = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setTitle("MCK - INSERT A NEW PRODUCT");
         setPreferredSize(new java.awt.Dimension(1100, 720));
-
-        jLabel1.setText("genero:");
 
         jLabel2.setText("Code:");
 
@@ -79,8 +101,6 @@ public class InsertProducts extends javax.swing.JInternalFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel7.setText("INSERT A NEW PRODUCT");
 
         btnInsert.setText("INSERT PRODUCT TO DATABASE");
@@ -92,6 +112,19 @@ public class InsertProducts extends javax.swing.JInternalFrame {
 
         jLabel8.setText("Type:");
 
+        jLabel9.setText("Unity:");
+
+        cmbUnity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "UN", "M", "M2", "M3", "CX", "DZ", "PAR", "PC", "PCT", "RL", "KG", "L", "LT", "GL", "OUTROS" }));
+
+        cmbType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "OUTROS", "EPI", "MAT_ELETRICO", "MAT_HIDRAULICO1", "FERRAGNS", "MAT_CONSTRUÇÃO", " " }));
+
+        btnClearFields.setText("CLEAR FIELDS");
+        btnClearFields.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearFieldsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -102,10 +135,6 @@ public class InsertProducts extends javax.swing.JInternalFrame {
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(27, 27, 27)
                                 .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -114,24 +143,30 @@ public class InsertProducts extends javax.swing.JInternalFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtBarcode, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtManufactor, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(25, 25, 25)
-                                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(162, 162, 162)
-                                .addComponent(btnInsert))
+                                .addComponent(btnInsert)
+                                .addGap(29, 29, 29)
+                                .addComponent(btnClearFields))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel8)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel9))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtBarcode, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cmbUnity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel8))
                                 .addGap(25, 25, 25)
-                                .addComponent(txtType, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cmbType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(162, 162, 162)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -142,11 +177,7 @@ public class InsertProducts extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel7)
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -154,25 +185,32 @@ public class InsertProducts extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(txtType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(txtManufactor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtBarcode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(btnInsert)
-                .addContainerGap(381, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(txtManufactor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(txtBarcode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(cmbUnity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(13, 13, 13)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnInsert)
+                            .addComponent(btnClearFields)))
+                    .addComponent(cmbType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(384, Short.MAX_VALUE))
         );
 
         pack();
@@ -183,19 +221,25 @@ public class InsertProducts extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtCodeActionPerformed
 
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
-        insert();        
-        
+        insert();
+
     }//GEN-LAST:event_btnInsertActionPerformed
 
     private void txtAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAmountActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAmountActionPerformed
 
+    private void btnClearFieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearFieldsActionPerformed
+       clearFields();
+       
+    }//GEN-LAST:event_btnClearFieldsActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnClearFields;
     private javax.swing.JButton btnInsert;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JComboBox<String> cmbType;
+    private javax.swing.JComboBox<String> cmbUnity;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -203,27 +247,25 @@ public class InsertProducts extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField txtAmount;
     private javax.swing.JTextField txtBarcode;
     private javax.swing.JTextField txtCode;
     private javax.swing.JTextField txtManufactor;
     private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtType;
     // End of variables declaration//GEN-END:variables
 
     private void insert() {
 
         String code = txtCode.getText();
         String name = txtName.getText();
-        String type = txtType.getText();
+        String type = cmbType.getSelectedItem().toString();
         String manufactor = txtManufactor.getText();
         String barcod = txtBarcode.getText();
+        String unity = cmbUnity.getSelectedItem().toString();
         Integer amount = Integer.parseInt(txtAmount.getText());
-        
-        
-        // String perfil = cmbPerfil.getSelectedItem().toString();
-        
-        if (code.isEmpty() || name.isEmpty()) {
+
+        if (code.isEmpty() || name.isEmpty() || type.isEmpty() || manufactor.isEmpty() || unity.isEmpty()) {
 
             JOptionPane.showMessageDialog(null, "ALL FIELDS MUST BE FILLED IN");
 
@@ -234,13 +276,20 @@ public class InsertProducts extends javax.swing.JInternalFrame {
             productmodel.setType(type);
             productmodel.setManufactor(manufactor);
             productmodel.setBarCode(barcod);
+            productmodel.setUnity(unity);
             productmodel.setAmount(amount);
 
             ProductControler productcontroler = new ProductControler(productmodel);
             productcontroler.Insert(productmodel);
-            //clearFields();
         }
-        
     }
-
+    
+     private void clearFields() {
+        txtCode.setText(null);
+        txtName.setText(null);
+        cmbType.setSelectedItem("EPI");
+        txtManufactor.setText(null);
+        cmbUnity.setSelectedItem("M");
+        txtAmount.setText(null);
+    }
 }

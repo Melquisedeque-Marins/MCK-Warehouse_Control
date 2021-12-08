@@ -10,18 +10,20 @@ public class ProductModel {
     private String type;
     private String manufactor; 
     private String barCode; 
+    private String unity; 
     private int amount;
 
     public ProductModel() {
     }
 
-    public ProductModel(int idProducts, String code, String name, String type, String manufactor, String barCode, int amount) {
+    public ProductModel(int idProducts, String code, String name, String type, String manufactor, String barCode, String unity, int amount) {
         this.idProducts = idProducts;
         this.code = code;
         this.name = name;
         this.type = type;
         this.manufactor = manufactor;
         this.barCode = barCode;
+        this.unity = unity;
         this.amount = amount;
     }
 
@@ -73,6 +75,14 @@ public class ProductModel {
         this.barCode = barCode;
     }
 
+    public String getUnity() {
+        return unity;
+    }
+
+    public void setUnity(String unity) {
+        this.unity = unity;
+    }
+
     public int getAmount() {
         return amount;
     }
@@ -80,5 +90,5 @@ public class ProductModel {
     public void setAmount(int amount) {
         this.amount = amount;
     }
-    
 }
+

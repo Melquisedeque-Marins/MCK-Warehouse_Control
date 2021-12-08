@@ -15,7 +15,7 @@ public class ConnectionBD {
             String port = "3306";
             String user = "root";
             String password = "1234";
-            String database = "warehousecontrol";
+            String database = "warehouse_control";
             String url = "jdbc:mysql://" + server + ":" + port + "/" + database;
             return DriverManager.getConnection(url, user, password);
             

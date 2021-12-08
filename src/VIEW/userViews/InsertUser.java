@@ -5,9 +5,9 @@
  */
 package VIEW.userViews;
 
+import Atxy2k.CustomTextField.RestrictedTextField;
 import CONTROLER.UserControler;
 import MODEL.UserModel;
-import VIEW.utilView.FieldFormat;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,10 +24,23 @@ public class InsertUser extends javax.swing.JInternalFrame {
      */
     public InsertUser() {
         initComponents();
-        txtName.setDocument(new FieldFormat(40, FieldFormat.TypeEntrance.NAME));
-        txtUser.setDocument(new FieldFormat(20, FieldFormat.TypeEntrance.USER));
-        txtPassword.setDocument(new FieldFormat(8, FieldFormat.TypeEntrance.PASSWORD));
-        txtAutPassword.setDocument(new FieldFormat(6, FieldFormat.TypeEntrance.PASSWORD));
+       
+        RestrictedTextField validarName = new RestrictedTextField(txtName);
+        validarName.setOnlyText(true);
+        validarName.setAcceptSpace(true);
+        validarName.setLimit(40);
+        
+        RestrictedTextField validarUser = new RestrictedTextField(txtUser);
+        validarUser.setOnlyAlphaNumeric(true);
+        validarUser.setLimit(20);
+
+        RestrictedTextField validarPass = new RestrictedTextField(txtPassword);
+        validarPass.setOnlyAlphaNumeric(true);
+        validarPass.setLimit(8);
+        
+        RestrictedTextField validarAutPass = new RestrictedTextField(txtAutPassword);
+        validarAutPass.setOnlyAlphaNumeric(true);
+        validarAutPass.setLimit(5);
     }
 
     /**
@@ -52,6 +65,8 @@ public class InsertUser extends javax.swing.JInternalFrame {
         btnCreateUser = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         btnClearFields = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -65,7 +80,7 @@ public class InsertUser extends javax.swing.JInternalFrame {
 
         jLabel3.setText("* Password");
 
-        jLabel4.setText("autentication Passowrd");
+        jLabel4.setText("Autentication");
 
         txtAutPassword.setEnabled(false);
 
@@ -94,6 +109,12 @@ public class InsertUser extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel7.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel7.setText("* 8 characters");
+
+        jLabel8.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel8.setText("* 5 characters");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -107,27 +128,31 @@ public class InsertUser extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(cmbPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2))
+                        .addGap(37, 37, 37)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(txtAutPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel7)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnCreateUser)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtAutPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(129, 129, 129)
+                        .addComponent(btnCreateUser)
                         .addGap(18, 18, 18)
                         .addComponent(btnClearFields)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(550, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,11 +169,15 @@ public class InsertUser extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtAutPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(3, 3, 3)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(cmbPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -158,7 +187,7 @@ public class InsertUser extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCreateUser)
                     .addComponent(btnClearFields))
-                .addContainerGap(365, Short.MAX_VALUE))
+                .addContainerGap(355, Short.MAX_VALUE))
         );
 
         pack();
@@ -195,6 +224,8 @@ public class InsertUser extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     public static javax.swing.JPasswordField txtAutPassword;
     private javax.swing.JTextField txtName;
     private javax.swing.JPasswordField txtPassword;
@@ -214,7 +245,10 @@ public class InsertUser extends javax.swing.JInternalFrame {
 
                     JOptionPane.showMessageDialog(null, "ALL FIELDS MUST BE FILLED IN");
 
-                } else {
+                } else if(password.length() < 8 || autPassword.length() < 5) {
+                    JOptionPane.showMessageDialog(null, "AS SENHAS DEVEM CONTER O TAMANHO ESPECIFICADO");
+                }else{
+                                   
                     UserModel usermodel = new UserModel();
                     usermodel.setName(name);
                     usermodel.setUser(user);
@@ -234,7 +268,10 @@ public class InsertUser extends javax.swing.JInternalFrame {
 
                     JOptionPane.showMessageDialog(null, "ALL FIELDS MUST BE FILLED IN");
 
-                } else {
+                } else if(password.length() < 8) {
+                    JOptionPane.showMessageDialog(null, "AS SENHAS DEVEM CONTER O TAMANHO ESPECIFICADO");
+                }
+                else {
                     UserModel usermodel = new UserModel();
                     usermodel.setName(name);
                     usermodel.setUser(user);
@@ -255,5 +292,6 @@ public class InsertUser extends javax.swing.JInternalFrame {
         txtUser.setText(null);
         txtPassword.setText(null);
         txtAutPassword.setText(null);
+        cmbPerfil.setSelectedItem("User");
     }
 }

@@ -29,7 +29,7 @@ public class ProductControler {
     public void Insert(ProductModel productmodel) {
 
         connection = new ConnectionBD().ConnectBD();
-        String sql = "INSERT INTO products (code, name, type, manufactor, barcod, amount) VALUES (?, ?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO products (code, name, type, manufactor, barcod, unity, amount) VALUES (?, ?, ?, ?, ?, ?, ?);";
 
         try {
             pstm = connection.prepareStatement(sql);
@@ -38,13 +38,14 @@ public class ProductControler {
             pstm.setString(3, productmodel.getType());
             pstm.setString(4, productmodel.getManufactor());
             pstm.setString(5, productmodel.getBarCode());
-            pstm.setInt(6, productmodel.getAmount());
+            pstm.setString(6, productmodel.getUnity());
+            pstm.setInt(7, productmodel.getAmount());
             pstm.execute();
             pstm.close();
             JOptionPane.showMessageDialog(null, "successfully registered product");
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "ALGO DEU ERRADO" + e);
+            JOptionPane.showMessageDialog(null, "This product code is not available" + e);
         }
     }
     
@@ -82,6 +83,7 @@ public class ProductControler {
                 productmodel.setType(rs.getString("type"));
                 productmodel.setManufactor(rs.getString("manufactor"));
                 productmodel.setBarCode(rs.getString("barcod"));
+                productmodel.setUnity(rs.getString("unity"));
                 productmodel.setAmount(parseInt(rs.getString("amount")));
 
                 list.add(productmodel);
@@ -114,7 +116,7 @@ public class ProductControler {
       
       public void update(ProductModel productmodel) {
         connection = new ConnectionBD().ConnectBD();
-        String sql = "UPDATE products SET code = ?, name=?, type=? , manufactor=?, barcod=?, amount=? WHERE idproducts=?;";
+        String sql = "UPDATE products SET code = ?, name=?, type=? , manufactor=?, barcod=?, unity=?, amount=? WHERE idproducts=?;";
 
         try {
             pstm = connection.prepareStatement(sql);
@@ -123,8 +125,9 @@ public class ProductControler {
             pstm.setString(3, productmodel.getType());
             pstm.setString(4, productmodel.getManufactor());
             pstm.setString(5, productmodel.getBarCode());
-            pstm.setInt(6, productmodel.getAmount());
-            pstm.setInt(7, productmodel.getIdProducts());
+            pstm.setString(6, productmodel.getUnity());
+            pstm.setInt(7, productmodel.getAmount());
+            pstm.setInt(8, productmodel.getIdProducts());
             pstm.execute();
             pstm.close();
             JOptionPane.showMessageDialog(null, "successfully update user");

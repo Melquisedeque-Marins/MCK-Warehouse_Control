@@ -5,6 +5,7 @@
  */
 package VIEW.userViews;
 
+import Atxy2k.CustomTextField.RestrictedTextField;
 import CONTROLER.UserControler;
 import MODEL.UserModel;
 import java.sql.SQLException;
@@ -27,6 +28,10 @@ public class SearchUser extends javax.swing.JInternalFrame {
      */
     public SearchUser() {
         initComponents();
+        
+        RestrictedTextField validarUser = new RestrictedTextField(txtNameSearch);
+        validarUser.setOnlyAlphaNumeric(true);
+        validarUser.setLimit(20);
         //DefaultTableModel model = (DefaultTableModel) tblSearch.getModel();
         //tblSearch.setRowSorter(new TableRowSorter(model));
     }

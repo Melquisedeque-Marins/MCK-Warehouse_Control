@@ -5,11 +5,10 @@
  */
 package VIEW.userViews;
 
+import Atxy2k.CustomTextField.RestrictedTextField;
 import CONTROLER.UserControler;
 import MODEL.UserModel;
-import VIEW.MainFrame;
-import VIEW.utilView.FieldFormat;
-import VIEW.utilView.LimitFieldText;
+import VIEW.mainFrame.MainFrame;
 import static java.lang.Integer.parseInt;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,8 +31,24 @@ public class DeleteUpdateUser extends javax.swing.JInternalFrame {
      */
     public DeleteUpdateUser() {
         initComponents();
-        txtPassword.setDocument(new LimitFieldText(8));
-        txtAutPassword.setDocument(new LimitFieldText(6));
+
+        RestrictedTextField validarName = new RestrictedTextField(txtName);
+        validarName.setOnlyText(true);
+        validarName.setAcceptSpace(true);
+        validarName.setLimit(40);
+
+        RestrictedTextField validarUser = new RestrictedTextField(txtUser);
+        validarUser.setOnlyAlphaNumeric(isSelected);
+        validarUser.setLimit(20);
+
+        RestrictedTextField validarPass = new RestrictedTextField(txtPassword);
+        validarPass.setOnlyAlphaNumeric(isSelected);
+        validarPass.setLimit(8);
+
+        RestrictedTextField validarAutPass = new RestrictedTextField(txtAutPassword);
+        validarAutPass.setOnlyAlphaNumeric(isSelected);
+        validarAutPass.setLimit(5);
+
         // DefaultTableModel model = (DefaultTableModel) tblSearch.getModel();
         // tblSearch.setRowSorter(new TableRowSorter(model));
     }
@@ -527,6 +542,8 @@ public class DeleteUpdateUser extends javax.swing.JInternalFrame {
 
                     JOptionPane.showMessageDialog(null, "ALL FIELDS MUST BE FILLED IN");
 
+                } else if (password.length() < 8 || autPassword.length() < 5) {
+                    JOptionPane.showMessageDialog(null, "AS SENHAS DEVEM CONTER O TAMANHO ESPECIFICADO");
                 } else {
                     UserModel usermodel = new UserModel();
                     usermodel.setName(name);
@@ -545,6 +562,8 @@ public class DeleteUpdateUser extends javax.swing.JInternalFrame {
 
                     JOptionPane.showMessageDialog(null, "ALL FIELDS MUST BE FILLED IN");
 
+                } else if (password.length() < 8) {
+                    JOptionPane.showMessageDialog(null, "AS SENHAS DEVEM CONTER O TAMANHO ESPECIFICADO");
                 } else {
                     UserModel usermodel = new UserModel();
                     usermodel.setId(id);
@@ -565,7 +584,7 @@ public class DeleteUpdateUser extends javax.swing.JInternalFrame {
     private ResultSet autorizationUser() {
 
         String autPassword = JOptionPane.showInputDialog(null, "Insert your autorization pin", "Acess verification", 3);
-        String user = MainFrame.lblUsuario.getText();
+        String user = MainFrame.lblUserName.getText();
 
         UserModel usermodel = new UserModel();
         usermodel.setUser(user);
