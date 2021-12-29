@@ -17,7 +17,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -33,8 +32,8 @@ public class DeleteUpdateUser extends javax.swing.JInternalFrame {
         initComponents();
 
         RestrictedTextField validarName = new RestrictedTextField(txtName);
-        validarName.setOnlyText(true);
-        validarName.setAcceptSpace(true);
+        validarName.setOnlyText(isSelected);
+        validarName.setAcceptSpace(isSelected);
         validarName.setLimit(40);
 
         RestrictedTextField validarUser = new RestrictedTextField(txtUser);
@@ -48,9 +47,6 @@ public class DeleteUpdateUser extends javax.swing.JInternalFrame {
         RestrictedTextField validarAutPass = new RestrictedTextField(txtAutPassword);
         validarAutPass.setOnlyAlphaNumeric(isSelected);
         validarAutPass.setLimit(5);
-
-        // DefaultTableModel model = (DefaultTableModel) tblSearch.getModel();
-        // tblSearch.setRowSorter(new TableRowSorter(model));
     }
 
     /**
@@ -328,14 +324,16 @@ public class DeleteUpdateUser extends javax.swing.JInternalFrame {
 
     private void btnDeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteUserActionPerformed
         try {
-            if (autorizationUser().next()) {
+            if (txtName.getText().equals(MainFrame.lblUserName.getText()) || txtName.getText().equals("admin")) {
+                JOptionPane.showMessageDialog(null, "you cannot delete this user", "unauthorized operation", 0);
+
+            } else if (autorizationUser().next()) {
 
                 JOptionPane.showMessageDialog(null, "Verified", "Authorized user", 1);
                 delete();
             } else {
                 JOptionPane.showMessageDialog(null, "Wrong pin", "User not authorized", 0);
             }
-
         } catch (SQLException ex) {
             Logger.getLogger(DeleteUpdateUser.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -370,15 +368,17 @@ public class DeleteUpdateUser extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnRefreshActionPerformed
 
     private void btnUpdateUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateUserActionPerformed
-
-        btnDeleteUser.setEnabled(false);
-        btnUpdateUser.setEnabled(false);
-        btnSaveUpdate.setEnabled(true);
-        txtId.setEditable(false);
-        txtId.setEnabled(true);
-        enableTxtFields();
-        tblSearch.setEnabled(false);
-
+        if (txtName.getText().equals(MainFrame.lblUserName.getText()) || txtName.getText().equals("admin")) {
+            JOptionPane.showMessageDialog(null, "you cannot update this user", "unauthorized operation", 0);
+        } else {
+            btnDeleteUser.setEnabled(false);
+            btnUpdateUser.setEnabled(false);
+            btnSaveUpdate.setEnabled(true);
+            txtId.setEditable(false);
+            txtId.setEnabled(true);
+            enableTxtFields();
+            tblSearch.setEnabled(false);
+        }
     }//GEN-LAST:event_btnUpdateUserActionPerformed
 
     private void cmbPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPerfilActionPerformed
@@ -391,9 +391,7 @@ public class DeleteUpdateUser extends javax.swing.JInternalFrame {
         } else {
             txtAutPassword.setText(null);
             txtAutPassword.setEnabled(false);
-
         }
-
     }//GEN-LAST:event_cmbPerfilActionPerformed
 
     private void btnClearFieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearFieldsActionPerformed
@@ -401,15 +399,12 @@ public class DeleteUpdateUser extends javax.swing.JInternalFrame {
         disableButtons();
         disableTxtFields();
         tblSearch.setEnabled(true);
-
-
     }//GEN-LAST:event_btnClearFieldsActionPerformed
 
     private void btnSaveUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveUpdateActionPerformed
         //update();
         try {
-            if (autorizationUser().next()) {
-
+             if (autorizationUser().next()) {
                 JOptionPane.showMessageDialog(null, "Verified", "Authorized user", 1);
                 if (update() == 1) {
                     clearFields();
@@ -427,7 +422,6 @@ public class DeleteUpdateUser extends javax.swing.JInternalFrame {
         } catch (SQLException ex) {
             Logger.getLogger(DeleteUpdateUser.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }//GEN-LAST:event_btnSaveUpdateActionPerformed
 
     private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
@@ -637,6 +631,5 @@ public class DeleteUpdateUser extends javax.swing.JInternalFrame {
         txtPassword.setEnabled(true);
         txtAutPassword.setEnabled(true);
         cmbPerfil.setEnabled(true);
-
     }
 }

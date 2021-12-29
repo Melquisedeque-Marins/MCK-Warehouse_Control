@@ -27,8 +27,8 @@ public class SearchProducts extends javax.swing.JInternalFrame {
      */
     public SearchProducts() {
         initComponents();
-        
-         RestrictedTextField validarUser = new RestrictedTextField(txtProductSearch);
+
+        RestrictedTextField validarUser = new RestrictedTextField(txtProductSearch);
         validarUser.setOnlyAlphaNumeric(true);
         validarUser.setLimit(20);
     }
@@ -265,7 +265,6 @@ public class SearchProducts extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tblSearchMouseClicked
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-
         DeleteUpdateProducts edit = new DeleteUpdateProducts();
         getParent().add(edit);
         edit.setVisible(true);
@@ -305,7 +304,7 @@ public class SearchProducts extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtUnity;
     // End of variables declaration//GEN-END:variables
 
-    public void search() {
+    private void search() {
 
         try {
             String name = txtProductSearch.getText();
@@ -340,6 +339,5 @@ public class SearchProducts extends javax.swing.JInternalFrame {
         txtBarcode.setText(tblSearch.getModel().getValueAt(set, 5).toString());
         txtUnity.setText(tblSearch.getModel().getValueAt(set, 6).toString());
         txtAmount.setText(tblSearch.getModel().getValueAt(set, 7).toString());
-
     }
 }

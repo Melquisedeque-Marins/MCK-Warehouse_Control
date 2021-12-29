@@ -11,11 +11,11 @@ public class LoginFrame extends javax.swing.JFrame {
 
     public LoginFrame() {
         initComponents();
-        
+
         RestrictedTextField validarUser = new RestrictedTextField(txtUser);
         validarUser.setOnlyAlphaNumeric(true);
         validarUser.setLimit(20);
-        
+
         RestrictedTextField validarPass = new RestrictedTextField(txtPassword);
         validarPass.setOnlyAlphaNumeric(true);
         validarPass.setLimit(8);
@@ -147,7 +147,7 @@ public class LoginFrame extends javax.swing.JFrame {
     private void LoginUser() {
         String username = txtUser.getText();
         String password = String.valueOf(txtPassword.getPassword());
-       
+
         if (username.isEmpty() || password.isEmpty()) {
 
             JOptionPane.showMessageDialog(null, "ALL FIELDS MUST BE FILLED IN");
@@ -164,9 +164,7 @@ public class LoginFrame extends javax.swing.JFrame {
 
                 if (rs.next()) {
                     String perfil = rs.getString(6);
-
                     if (perfil.equals("Admin")) {
-
                         MainFrame mainframe = new MainFrame();
                         mainframe.setVisible(true);
                         MainFrame.MenManeger.setEnabled(true);

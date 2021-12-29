@@ -27,7 +27,7 @@ public class InsertProducts extends javax.swing.JInternalFrame {
         validarCode.setLimit(7);
 
         RestrictedTextField validarName = new RestrictedTextField(txtName);
-        //validarName.setOnlyAlphaNumeric(true);
+        //  validarName.setOnlyAlphaNumeric(true);
         validarName.setAcceptSpace(true);
         validarName.setLimit(50);
 
@@ -39,9 +39,9 @@ public class InsertProducts extends javax.swing.JInternalFrame {
         RestrictedTextField validarBarcode = new RestrictedTextField(txtBarcode);
         validarBarcode.setOnlyNums(true);
         validarBarcode.setLimit(13);
-        
+
         RestrictedTextField validarAmount = new RestrictedTextField(txtAmount);
-        validarAmount.setOnlyNums(true);
+        validarAmount.setOnlyNums(isSelected);
         validarAmount.setLimit(12);
     }
 
@@ -222,6 +222,7 @@ public class InsertProducts extends javax.swing.JInternalFrame {
 
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
         insert();
+        clearFields();
 
     }//GEN-LAST:event_btnInsertActionPerformed
 
@@ -230,8 +231,8 @@ public class InsertProducts extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtAmountActionPerformed
 
     private void btnClearFieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearFieldsActionPerformed
-       clearFields();
-       
+        clearFields();
+
     }//GEN-LAST:event_btnClearFieldsActionPerformed
 
 
@@ -283,13 +284,13 @@ public class InsertProducts extends javax.swing.JInternalFrame {
             productcontroler.Insert(productmodel);
         }
     }
-    
-     private void clearFields() {
+
+    private void clearFields() {
         txtCode.setText(null);
         txtName.setText(null);
         cmbType.setSelectedItem("EPI");
         txtManufactor.setText(null);
+        txtBarcode.setText(null);
         cmbUnity.setSelectedItem("M");
-        txtAmount.setText(null);
     }
 }

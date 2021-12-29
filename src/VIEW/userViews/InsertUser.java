@@ -24,7 +24,7 @@ public class InsertUser extends javax.swing.JInternalFrame {
      */
     public InsertUser() {
         initComponents();
-       
+               
         RestrictedTextField validarName = new RestrictedTextField(txtName);
         validarName.setOnlyText(true);
         validarName.setAcceptSpace(true);
@@ -73,6 +73,23 @@ public class InsertUser extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setTitle("Create User");
         setPreferredSize(new java.awt.Dimension(1100, 720));
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameActivated(evt);
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
 
         jLabel1.setText("* Name");
 
@@ -212,6 +229,10 @@ public class InsertUser extends javax.swing.JInternalFrame {
     private void btnClearFieldsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearFieldsActionPerformed
         clearFields();
     }//GEN-LAST:event_btnClearFieldsActionPerformed
+
+    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
+        txtName.requestFocus(); 
+    }//GEN-LAST:event_formInternalFrameActivated
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

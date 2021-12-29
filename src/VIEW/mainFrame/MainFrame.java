@@ -48,8 +48,8 @@ public class MainFrame extends javax.swing.JFrame {
         MenProdSearch = new javax.swing.JMenuItem();
         MenProdInset = new javax.swing.JMenuItem();
         MenProdUpdate = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        MenRequest = new javax.swing.JMenu();
+        MenReqGenerate = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -120,25 +120,25 @@ public class MainFrame extends javax.swing.JFrame {
         Menubar.add(MenMat);
         MenMat.getAccessibleContext().setAccessibleDescription("");
 
-        jMenu2.setText("Requisições ");
+        MenRequest.setText("Requests");
 
-        jMenuItem1.setText("Gerar");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        MenReqGenerate.setText("Generate");
+        MenReqGenerate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                MenReqGenerateActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem1);
+        MenRequest.add(MenReqGenerate);
 
-        jMenuItem2.setText("Consultar");
+        jMenuItem2.setText("Consult");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem2);
+        MenRequest.add(jMenuItem2);
 
-        Menubar.add(jMenu2);
+        Menubar.add(MenRequest);
 
         jMenu3.setText("Recebimentos ");
 
@@ -304,12 +304,12 @@ public class MainFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_MenProdUpdateActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void MenReqGenerateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenReqGenerateActionPerformed
         RequestForm requestForm = new RequestForm();
         requestForm.setVisible(true);
         desktop.add(requestForm);
 
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_MenReqGenerateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -362,12 +362,12 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem MenProdInset;
     private javax.swing.JMenuItem MenProdSearch;
     private javax.swing.JMenuItem MenProdUpdate;
+    private javax.swing.JMenuItem MenReqGenerate;
+    private javax.swing.JMenu MenRequest;
     private javax.swing.JMenuItem MenSearchUser;
     private javax.swing.JMenuBar Menubar;
     private javax.swing.JDesktopPane desktop;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;

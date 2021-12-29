@@ -22,9 +22,6 @@ public class ProductControler {
     
      public ProductControler() {
     }
-     public void create() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     public void Insert(ProductModel productmodel) {
 
@@ -62,7 +59,6 @@ public class ProductControler {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "search Controler" + e);
         }
-
     }
     
      public ArrayList<ProductModel> read() {
@@ -94,7 +90,6 @@ public class ProductControler {
 
         }
         return list;
-
     }
      
       public void delete(ProductModel productmodel) {
@@ -135,6 +130,5 @@ public class ProductControler {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "ALGO DEU ERRADO" + e);
         }
-
     }
 }
